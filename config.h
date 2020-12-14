@@ -22,7 +22,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "ﴔ", "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -31,7 +31,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",         NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",      NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Mozilla Firefox",      NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "Signal",       NULL,       NULL,       1 << 7,       0,           -1 },
 	{ "Transmission", NULL,       NULL,       1 << 6,       0,           -1 },
 };
@@ -49,8 +49,8 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define XF86AudioMute                   0x1008ff12
 #define XF86AudioLowerVolume            0x1008ff11
+#define XF86AudioMute                   0x1008ff12
 #define XF86AudioRaiseVolume            0x1008ff13
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
@@ -71,7 +71,7 @@ static const char *termcmd[]  = { "st" };
 static const char *emacscmd[] = { "emacsclient", "--create-frame", NULL };
 //static const char *cmdsoundup[]  = { "/home/felixp/.userscripts/volumeUp.sh", NULL };
 //static const char *cmdsounddown[]  = { "/home/felixp/.userscripts/volumeDown.sh", NULL };
-//static const char *cmdsoundtoggle[]  = { "/home/.userscripts/volumeToggle.sh", NULL };
+//static const char *cmdsoundtoggle[]  = { "/home/felixp/.userscripts/volumeToggle.sh", NULL };
 static const char *cmdsoundup[]  = { "amixer", "-q", "sset", "Master", "5%+", NULL };
 static const char *cmdsounddown[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
 static const char *cmdsoundtoggle[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
