@@ -8,7 +8,9 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 10;       /* vertical padding of bar */
 static const int sidepad            = 10;       /* horizontal padding of bar */
-static const char *fonts[]          = { "UbuntuMono nerd Font:size=12", "JoyPixels:pixelsize=12:antialias=true:autohint=true" };
+static const char *fonts[]          = {
+					"UbuntuMono nerd Font:size=12:antialias=true:autohint=true",
+					"JoyPixels:pixelsize=12:antialias=true:autohint=true" };
 static const char dmenufont[]       = "UbuntuMono nerd Font:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -30,10 +32,10 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",         NULL,       NULL,       0,            1,           -1 },
-	{ "Mozilla Firefox",      NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "Signal",       NULL,       NULL,       1 << 7,       0,           -1 },
-	{ "Transmission", NULL,       NULL,       1 << 6,       0,           -1 },
+	{ "Gimp",     	 NULL,       NULL,       0,            1,           -1 },
+	{ "Firefox",	 NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "Signal",	 NULL,       NULL,       1 << 7,       0,           -1 },
+	{ "Transmission",NULL,       NULL,       1 << 6,       0,           -1 },
 };
 
 /* layout(s) */
@@ -44,8 +46,8 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "",      NULL },    /* no layout function means floating behavior */
+	{ "",      monocle },
 };
 
 /* key definitions */
@@ -67,14 +69,14 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 
 //static const char *termcmd[]  = { "emacsclient", "--create-frame", "--eval", "(vterm)", NULL };
-static const char *termcmd[]  = { "st" };
+static const char *termcmd[]  = { "st", NULL };
 static const char *emacscmd[] = { "emacsclient", "--create-frame", NULL };
 //static const char *cmdsoundup[]  = { "/home/felixp/.userscripts/volumeUp.sh", NULL };
 //static const char *cmdsounddown[]  = { "/home/felixp/.userscripts/volumeDown.sh", NULL };
 //static const char *cmdsoundtoggle[]  = { "/home/felixp/.userscripts/volumeToggle.sh", NULL };
-static const char *cmdsoundup[]  = { "amixer", "-q", "sset", "Master", "5%+", NULL };
-static const char *cmdsounddown[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
-static const char *cmdsoundtoggle[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
+//static const char *cmdsoundup[]  = { "amixer", "-q", "sset", "Master", "5%+", NULL };
+//static const char *cmdsounddown[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
+//static const char *cmdsoundtoggle[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -106,9 +108,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_plus,   setgaps,        {.i = +5 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = "slock"} },
-	{ 0,                            XF86AudioMute,             spawn,          {.v = cmdsoundtoggle } },
-	{ 0,                            XF86AudioRaiseVolume,      spawn,          {.v = cmdsoundup } },
-	{ 0,                            XF86AudioLowerVolume,      spawn,          {.v = cmdsounddown } },
  
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
